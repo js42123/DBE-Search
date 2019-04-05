@@ -17,13 +17,13 @@ namespace DBESearch.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NAICSCode()
         {
-            this.DBECompanies = new HashSet<DBECompany>();
+            this.CompanyNAICSCodes = new HashSet<CompanyNAICSCode>();
         }
     
         public string NAICSCode1 { get; set; }
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DBECompany> DBECompanies { get; set; }
+        public virtual ICollection<CompanyNAICSCode> CompanyNAICSCodes { get; set; }
     }
 }

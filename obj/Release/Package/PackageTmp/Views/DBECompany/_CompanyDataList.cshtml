@@ -1,0 +1,271 @@
+﻿@model IEnumerable<DBESearch.Models.DBECompany>
+
+<script src="~/Scripts/jquery-1.12.4.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.0.js"></script>
+
+@using (Html.BeginForm("ExportDataToExcel", "DBECompanies", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div style="text-align: right;">
+        <input type="submit" name="ExportToExcel" value="ExportToExcel" />
+    </div>
+    <br />
+    <div id="DivRoot" align="left">
+        <div style="overflow: hidden;" id="DivHeaderRow">
+        </div>
+        <div style="overflow: scroll;" onscroll="OnScrollDiv(this)" id="DivMainContent">
+            <table id="tblSearch" style="font-size: 0.9em;">
+                <tr class="header">
+                    <th>
+                        @Html.DisplayNameFor(model => model.CompanyName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DBAName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OwnersFirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OwnersLastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CompanyAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.City)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.State)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Zip)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fax)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.District)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DBE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ACDBE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SBP)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MBE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Certified)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CertificationDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DecertificationDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DecertReason)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Suspended)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Suspension_Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DWBE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WBE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ACDWBE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SmallBusiness)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OnSiteReviewDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TypeofFirm)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateRequestedLastOnSite)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DeskAuditReview)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Race)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MonthofAnnualAffidavit)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RenewalDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ACWBE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.County)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DBAName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OwnersFirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OwnersLastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.State)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Zip)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fax)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.District)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DBE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ACDBE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SBP)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MBE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Certified)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CertificationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DecertificationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DecertReason)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Suspended)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Suspension_Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DWBE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WBE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ACDWBE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SmallBusiness)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OnSiteReviewDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeofFirm)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateRequestedLastOnSite)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DeskAuditReview)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Race)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MonthofAnnualAffidavit)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RenewalDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ACWBE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.County)
+                        </td>
+                        @*<td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.CompanyId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.CompanyId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId })
+                            </td>*@
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    <div id="DivFooterRow" style="overflow: hidden">
+    </div>
+    @*</div>*@
+    <br />
+    @* This below code will export the data to Excel*@
+    <div style="text-align: right;">
+        <input type="submit" name="ExportToExcel" value="ExportToExcel" />
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $("#tblSearch tr:nth-child(even)").addClass("even");
+        $("#tblSearch tr:nth-child(odd)").addClass("odd");
+    });
+</script>
+
+@section styles {
+    @Styles.Render("~/styles/citation-search")
+}

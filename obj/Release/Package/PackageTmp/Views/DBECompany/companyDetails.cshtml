@@ -1,0 +1,106 @@
+﻿@model IEnumerable<DBESearch.ViewModels.CompanyViewModel>
+@using DBESearch.Models;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    p, .row, .panel-body {
+        color: #474747;
+        font-family: Arial;
+    }    
+</style>
+<div class="container">
+    <input type="button" class="btn btn-primary hidden-print" onclick="window.self.close(); return false;" value="Close and View other Search Results" />
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel panel-primary">
+                <div class="panel-heading clearfix hidden-print">
+                    <b>Business Contact Information</b>
+                    <button class="btn btn-primary pull-right hidden-print" onclick="printPage()"><i class="fas fa-print"></i></button>
+                </div>
+            </div>
+            <div class="panel-body">
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="col-xs-2"><b>Business Name:</b></div>
+                        <div class="col-xs-10"><b>@item.CompanyName</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2"><b>Owner/Contact:</b></div>
+                        <div class="col-xs-10"><b>@(item.OwnersLastName == null || item.OwnersLastName == "" ? "Unavailable" : item.OwnersFirstName + " " + item.OwnersLastName)</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2"><b>Address:</b></div>
+                        <div class="col-xs-10"><b>@(item.CompanyAddress == null || item.CompanyAddress == "" ? "Unavailable" : item.CompanyAddress)</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2"><b>Phone:</b></div>
+                        <div class="col-xs-10"><b>@(item.Phone == null || item.Phone == "" ? "Unavailable" : item.Phone)</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2"><b>Fax:</b></div>
+                        <div class="col-xs-10">
+                            <b>
+                                @(item.Fax == null || item.Fax == "" ? "Unavailable" : item.Fax)
+                                @*@(item.AltFax == null || item.AltFax == "" ? "" : "      Alt.Fax: " + item.AltFax)*@
+                            </b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2"><b>Email:</b></div>
+                        <div class="col-xs-10"><b>@(item.Email == null || item.Email == "" ? "Unavailable" : item.Email)</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2"><b>County:</b></div>
+                        <div class="col-xs-10"><b>@(item.County == null || item.County == "" ? "Unavailable" : item.County)</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2"><b>Certifications:</b></div>
+                        <div class="col-xs-10" style="display:inline">                            
+                            @if (item.DBE == true)
+                            {<p style="display:inline"><b>DBE</b></p>}
+                            @if (item.ACDBE == true)
+                            {<p style="display:inline"><b>ACDBE</b></p>}
+                            @if (item.MBE == true)
+                            {<p style="display:inline"><b>MBE</b></p>}
+                            @if (item.SBP == true)
+                            {<p style="display:inline"><b>SBP</b></p>}                            
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading"><b>NAICS and Department Codes for Company</b></div>
+            <div class="panel-body">
+                <table class="table table-striped table-hover">
+                    <thead><tr><th>Code</th><th>Description</th></tr></thead>
+                    @foreach (var item in Model)
+                    {
+                        foreach (var naics in item.CompanyNAICSCodesList)
+                        {
+                            <tr><td>@naics.NAICSCode</td><td>@naics.Description</td></tr>
+                        }
+                    }
+                    @foreach (var item in Model)
+                    {
+                        foreach (var depcodes in item.CompanyItemCodesList)
+                        {
+                            <tr>
+                                <td>@depcodes.ItemCode</td>
+                                <td>@depcodes.Description @depcodes.Comments</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function printPage() {
+        window.print();
+    }
+</script>
+

@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBESearchDirectoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DBEDirectory.dbo.ARZipCodesbyDistrict' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ARZipCodesbyDistrict">
+          <Property Name="zip" Type="nvarchar" MaxLength="255" />
+          <Property Name="empflag" Type="nvarchar" MaxLength="255" />
+          <Property Name="emp_nf" Type="nvarchar" MaxLength="255" />
+          <Property Name="emp" Type="float" />
+          <Property Name="qp1_nf" Type="nvarchar" MaxLength="255" />
+          <Property Name="qp1" Type="float" />
+          <Property Name="ap_nf" Type="nvarchar" MaxLength="255" />
+          <Property Name="ap" Type="float" />
+          <Property Name="est" Type="float" />
+          <Property Name="city" Type="nvarchar" MaxLength="255" />
+          <Property Name="stabbr" Type="nvarchar" MaxLength="255" />
+          <Property Name="County_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="DistrictNumber" Type="int" />
+          <Property Name="DistrictName" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <EntityType Name="CompanyItemCodes">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="ItemCode" />
+          </Key>
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="ItemCode" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CompanyNAICSCodes">
+          <Key>
+            <PropertyRef Name="NAICSCode" />
+            <PropertyRef Name="Companyid" />
+          </Key>
+          <Property Name="NAICSCode" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Companyid" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DBECompany">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="DBAName" Type="varchar" MaxLength="45" />
+          <Property Name="OwnersFirstName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="OwnersLastName" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="CompanyAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="70" />
+          <Property Name="City" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="State" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Zip" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Fax" Type="varchar" MaxLength="30" />
+          <Property Name="District" Type="varchar" MaxLength="2" />
+          <Property Name="DBE" Type="bit" />
+          <Property Name="ACDBE" Type="bit" />
+          <Property Name="SBP" Type="bit" />
+          <Property Name="MBE" Type="bit" />
+          <Property Name="Certified" Type="bit" />
+          <Property Name="CertificationDate" Type="smalldatetime" />
+          <Property Name="DecertificationDate" Type="smalldatetime" />
+          <Property Name="DecertReason" Type="varchar" MaxLength="30" />
+          <Property Name="Suspended" Type="bit" />
+          <Property Name="Suspension Date" Type="smalldatetime" />
+          <Property Name="DWBE" Type="bit" />
+          <Property Name="WBE" Type="bit" />
+          <Property Name="ACDWBE" Type="bit" />
+          <Property Name="SmallBusiness" Type="bit" />
+          <Property Name="OnSiteReviewDate" Type="smalldatetime" />
+          <Property Name="TypeofFirm" Type="varchar" MaxLength="35" />
+          <Property Name="DateRequestedLastOnSite" Type="smalldatetime" />
+          <Property Name="DeskAuditReview" Type="varchar" MaxLength="35" />
+          <Property Name="Race" Type="varchar" MaxLength="20" />
+          <Property Name="Gender" Type="varchar" MaxLength="12" />
+          <Property Name="MonthofAnnualAffidavit" Type="varchar" MaxLength="35" />
+          <Property Name="RenewalDate" Type="smalldatetime" />
+          <Property Name="ACWBE" Type="bit" />
+          <Property Name="County" Type="varchar" MaxLength="50" />
+          <Property Name="Website" Type="varchar" MaxLength="70" />
+        </EntityType>
+        <EntityType Name="ItemCodes">
+          <Key>
+            <PropertyRef Name="ItemCode" />
+          </Key>
+          <Property Name="ItemCode" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="NAICSCodes">
+          <Key>
+            <PropertyRef Name="NAICSCode" />
+          </Key>
+          <Property Name="NAICSCode" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CompanyItemCodes_DBECompany">
+          <End Role="DBECompany" Type="Self.DBECompany" Multiplicity="1" />
+          <End Role="CompanyItemCodes" Type="Self.CompanyItemCodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DBECompany">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="CompanyItemCodes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyItemCodes_ItemCodes">
+          <End Role="ItemCodes" Type="Self.ItemCodes" Multiplicity="1" />
+          <End Role="CompanyItemCodes" Type="Self.CompanyItemCodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemCodes">
+              <PropertyRef Name="ItemCode" />
+            </Principal>
+            <Dependent Role="CompanyItemCodes">
+              <PropertyRef Name="ItemCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyNAICSCodes_DBECompany">
+          <End Role="DBECompany" Type="Self.DBECompany" Multiplicity="1" />
+          <End Role="CompanyNAICSCodes" Type="Self.CompanyNAICSCodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DBECompany">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="CompanyNAICSCodes">
+              <PropertyRef Name="Companyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyNAICSCodes_NAICSCodes">
+          <End Role="NAICSCodes" Type="Self.NAICSCodes" Multiplicity="1" />
+          <End Role="CompanyNAICSCodes" Type="Self.CompanyNAICSCodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NAICSCodes">
+              <PropertyRef Name="NAICSCode" />
+            </Principal>
+            <Dependent Role="CompanyNAICSCodes">
+              <PropertyRef Name="NAICSCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBESearchDirectoryModelStoreContainer">
+          <EntitySet Name="CompanyItemCodes" EntityType="Self.CompanyItemCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyNAICSCodes" EntityType="Self.CompanyNAICSCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DBECompany" EntityType="Self.DBECompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemCodes" EntityType="Self.ItemCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NAICSCodes" EntityType="Self.NAICSCodes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CompanyItemCodes_DBECompany" Association="Self.FK_CompanyItemCodes_DBECompany">
+            <End Role="DBECompany" EntitySet="DBECompany" />
+            <End Role="CompanyItemCodes" EntitySet="CompanyItemCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyItemCodes_ItemCodes" Association="Self.FK_CompanyItemCodes_ItemCodes">
+            <End Role="ItemCodes" EntitySet="ItemCodes" />
+            <End Role="CompanyItemCodes" EntitySet="CompanyItemCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyNAICSCodes_DBECompany" Association="Self.FK_CompanyNAICSCodes_DBECompany">
+            <End Role="DBECompany" EntitySet="DBECompany" />
+            <End Role="CompanyNAICSCodes" EntitySet="CompanyNAICSCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyNAICSCodes_NAICSCodes" Association="Self.FK_CompanyNAICSCodes_NAICSCodes">
+            <End Role="NAICSCodes" EntitySet="NAICSCodes" />
+            <End Role="CompanyNAICSCodes" EntitySet="CompanyNAICSCodes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBESearchDirectoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CompanyItemCode">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="ItemCode" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="ItemCode" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DBECompany" Relationship="Self.FK_CompanyItemCodes_DBECompany" FromRole="CompanyItemCodes" ToRole="DBECompany" />
+          <NavigationProperty Name="ItemCode1" Relationship="Self.FK_CompanyItemCodes_ItemCodes" FromRole="CompanyItemCodes" ToRole="ItemCodes" />
+        </EntityType>
+        <EntityType Name="CompanyNAICSCode">
+          <Key>
+            <PropertyRef Name="Companyid" />
+            <PropertyRef Name="NAICSCode" />
+          </Key>
+          <Property Name="Companyid" Type="Int32" Nullable="false" />
+          <Property Name="NAICSCode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DBECompany" Relationship="Self.FK_CompanyNAICSCodes_DBECompany" FromRole="CompanyNAICSCodes" ToRole="DBECompany" />
+          <NavigationProperty Name="NAICSCode1" Relationship="Self.FK_CompanyNAICSCodes_NAICSCodes" FromRole="CompanyNAICSCodes" ToRole="NAICSCodes" />
+        </EntityType>
+        <EntityType Name="DBECompany">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DBAName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="OwnersFirstName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OwnersLastName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Zip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="District" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="DBE" Type="Boolean" />
+          <Property Name="ACDBE" Type="Boolean" />
+          <Property Name="SBP" Type="Boolean" />
+          <Property Name="MBE" Type="Boolean" />
+          <Property Name="Certified" Type="Boolean" />
+          <Property Name="CertificationDate" Type="DateTime" Precision="0" />
+          <Property Name="DecertificationDate" Type="DateTime" Precision="0" />
+          <Property Name="DecertReason" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CompanyItemCodes" Relationship="Self.FK_CompanyItemCodes_DBECompany" FromRole="DBECompany" ToRole="CompanyItemCodes" />
+          <NavigationProperty Name="CompanyNAICSCodes" Relationship="Self.FK_CompanyNAICSCodes_DBECompany" FromRole="DBECompany" ToRole="CompanyNAICSCodes" />
+          <Property Name="County" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Suspended" Type="Boolean" />
+          <Property Name="Suspension_Date" Type="DateTime" Precision="0" />
+          <Property Name="DWBE" Type="Boolean" />
+          <Property Name="WBE" Type="Boolean" />
+          <Property Name="ACDWBE" Type="Boolean" />
+          <Property Name="SmallBusiness" Type="Boolean" />
+          <Property Name="OnSiteReviewDate" Type="DateTime" Precision="0" />
+          <Property Name="TypeofFirm" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="DateRequestedLastOnSite" Type="DateTime" Precision="0" />
+          <Property Name="DeskAuditReview" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Race" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="MonthofAnnualAffidavit" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="RenewalDate" Type="DateTime" Precision="0" />
+          <Property Name="ACWBE" Type="Boolean" />
+          <Property Name="Website" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ItemCode">
+          <Key>
+            <PropertyRef Name="ItemCode1" />
+          </Key>
+          <Property Name="ItemCode1" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CompanyItemCodes" Relationship="Self.FK_CompanyItemCodes_ItemCodes" FromRole="ItemCodes" ToRole="CompanyItemCodes" />
+        </EntityType>
+        <EntityType Name="NAICSCode">
+          <Key>
+            <PropertyRef Name="NAICSCode1" />
+          </Key>
+          <Property Name="NAICSCode1" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CompanyNAICSCodes" Relationship="Self.FK_CompanyNAICSCodes_NAICSCodes" FromRole="NAICSCodes" ToRole="CompanyNAICSCodes" />
+        </EntityType>
+        <Association Name="FK_CompanyItemCodes_DBECompany">
+          <End Role="DBECompany" Type="Self.DBECompany" Multiplicity="1" />
+          <End Role="CompanyItemCodes" Type="Self.CompanyItemCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DBECompany">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="CompanyItemCodes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyItemCodes_ItemCodes">
+          <End Role="ItemCodes" Type="Self.ItemCode" Multiplicity="1" />
+          <End Role="CompanyItemCodes" Type="Self.CompanyItemCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemCodes">
+              <PropertyRef Name="ItemCode1" />
+            </Principal>
+            <Dependent Role="CompanyItemCodes">
+              <PropertyRef Name="ItemCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyNAICSCodes_DBECompany">
+          <End Role="DBECompany" Type="Self.DBECompany" Multiplicity="1" />
+          <End Role="CompanyNAICSCodes" Type="Self.CompanyNAICSCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DBECompany">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="CompanyNAICSCodes">
+              <PropertyRef Name="Companyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyNAICSCodes_NAICSCodes">
+          <End Role="NAICSCodes" Type="Self.NAICSCode" Multiplicity="1" />
+          <End Role="CompanyNAICSCodes" Type="Self.CompanyNAICSCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NAICSCodes">
+              <PropertyRef Name="NAICSCode1" />
+            </Principal>
+            <Dependent Role="CompanyNAICSCodes">
+              <PropertyRef Name="NAICSCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBESearchDirectoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CompanyItemCodes" EntityType="Self.CompanyItemCode" />
+          <EntitySet Name="CompanyNAICSCodes" EntityType="Self.CompanyNAICSCode" />
+          <EntitySet Name="DBECompanies" EntityType="Self.DBECompany" />
+          <EntitySet Name="ItemCodes" EntityType="Self.ItemCode" />
+          <EntitySet Name="NAICSCodes" EntityType="Self.NAICSCode" />
+          <AssociationSet Name="FK_CompanyItemCodes_DBECompany" Association="Self.FK_CompanyItemCodes_DBECompany">
+            <End Role="DBECompany" EntitySet="DBECompanies" />
+            <End Role="CompanyItemCodes" EntitySet="CompanyItemCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyItemCodes_ItemCodes" Association="Self.FK_CompanyItemCodes_ItemCodes">
+            <End Role="ItemCodes" EntitySet="ItemCodes" />
+            <End Role="CompanyItemCodes" EntitySet="CompanyItemCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyNAICSCodes_DBECompany" Association="Self.FK_CompanyNAICSCodes_DBECompany">
+            <End Role="DBECompany" EntitySet="DBECompanies" />
+            <End Role="CompanyNAICSCodes" EntitySet="CompanyNAICSCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyNAICSCodes_NAICSCodes" Association="Self.FK_CompanyNAICSCodes_NAICSCodes">
+            <End Role="NAICSCodes" EntitySet="NAICSCodes" />
+            <End Role="CompanyNAICSCodes" EntitySet="CompanyNAICSCodes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBESearchDirectoryModelStoreContainer" CdmEntityContainer="DBESearchDirectoryEntities">
+          <EntitySetMapping Name="CompanyItemCodes">
+            <EntityTypeMapping TypeName="DBESearchDirectoryModel.CompanyItemCode">
+              <MappingFragment StoreEntitySet="CompanyItemCodes">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyNAICSCodes">
+            <EntityTypeMapping TypeName="DBESearchDirectoryModel.CompanyNAICSCode">
+              <MappingFragment StoreEntitySet="CompanyNAICSCodes">
+                <ScalarProperty Name="Companyid" ColumnName="Companyid" />
+                <ScalarProperty Name="NAICSCode" ColumnName="NAICSCode" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DBECompanies">
+            <EntityTypeMapping TypeName="DBESearchDirectoryModel.DBECompany">
+              <MappingFragment StoreEntitySet="DBECompany">
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="ACWBE" ColumnName="ACWBE" />
+                <ScalarProperty Name="RenewalDate" ColumnName="RenewalDate" />
+                <ScalarProperty Name="MonthofAnnualAffidavit" ColumnName="MonthofAnnualAffidavit" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Race" ColumnName="Race" />
+                <ScalarProperty Name="DeskAuditReview" ColumnName="DeskAuditReview" />
+                <ScalarProperty Name="DateRequestedLastOnSite" ColumnName="DateRequestedLastOnSite" />
+                <ScalarProperty Name="TypeofFirm" ColumnName="TypeofFirm" />
+                <ScalarProperty Name="OnSiteReviewDate" ColumnName="OnSiteReviewDate" />
+                <ScalarProperty Name="SmallBusiness" ColumnName="SmallBusiness" />
+                <ScalarProperty Name="ACDWBE" ColumnName="ACDWBE" />
+                <ScalarProperty Name="WBE" ColumnName="WBE" />
+                <ScalarProperty Name="DWBE" ColumnName="DWBE" />
+                <ScalarProperty Name="Suspension_Date" ColumnName="Suspension Date" />
+                <ScalarProperty Name="Suspended" ColumnName="Suspended" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="DBAName" ColumnName="DBAName" />
+                <ScalarProperty Name="OwnersFirstName" ColumnName="OwnersFirstName" />
+                <ScalarProperty Name="OwnersLastName" ColumnName="OwnersLastName" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="DBE" ColumnName="DBE" />
+                <ScalarProperty Name="ACDBE" ColumnName="ACDBE" />
+                <ScalarProperty Name="SBP" ColumnName="SBP" />
+                <ScalarProperty Name="MBE" ColumnName="MBE" />
+                <ScalarProperty Name="Certified" ColumnName="Certified" />
+                <ScalarProperty Name="CertificationDate" ColumnName="CertificationDate" />
+                <ScalarProperty Name="DecertificationDate" ColumnName="DecertificationDate" />
+                <ScalarProperty Name="DecertReason" ColumnName="DecertReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemCodes">
+            <EntityTypeMapping TypeName="DBESearchDirectoryModel.ItemCode">
+              <MappingFragment StoreEntitySet="ItemCodes">
+                <ScalarProperty Name="ItemCode1" ColumnName="ItemCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NAICSCodes">
+            <EntityTypeMapping TypeName="DBESearchDirectoryModel.NAICSCode">
+              <MappingFragment StoreEntitySet="NAICSCodes">
+                <ScalarProperty Name="NAICSCode1" ColumnName="NAICSCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

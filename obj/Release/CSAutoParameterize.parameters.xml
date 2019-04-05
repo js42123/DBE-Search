@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DBESearchDirectoryEntities-Web.config Connection String" description="DBESearchDirectoryEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.DBEDirectoryModel.csdl|res://*/Models.DBEDirectoryModel.ssdl|res://*/Models.DBEDirectoryModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=beaver;initial catalog=DBEDirectory;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\tfs_applications\\DBESearch\\DBESearch\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DBESearchDirectoryEntities']/@connectionString" />
+  </parameter>
+</parameters>

@@ -51,7 +51,11 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -158,38 +162,38 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DBECompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ItemCodesController.cs" />
-    <Compile Include="Controllers\NAICSController.cs" />
-    <Compile Include="Controllers\testController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyItemCode.cs">
-      <DependentUpon>Exec_DBE_SearchModel.tt</DependentUpon>
+      <DependentUpon>DBEDirectoryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyNAICSCode.cs">
+      <DependentUpon>DBEDirectoryEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DBECompany.cs">
-      <DependentUpon>Exec_DBE_SearchModel.tt</DependentUpon>
+      <DependentUpon>DBEDirectoryEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Exec_DBE_SearchModel.Context.cs">
+    <Compile Include="Models\DBEDirectoryEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Exec_DBE_SearchModel.Context.tt</DependentUpon>
+      <DependentUpon>DBEDirectoryEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Exec_DBE_SearchModel.cs">
+    <Compile Include="Models\DBEDirectoryEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Exec_DBE_SearchModel.tt</DependentUpon>
+      <DependentUpon>DBEDirectoryEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Exec_DBE_SearchModel.Designer.cs">
+    <Compile Include="Models\DBEDirectoryModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Exec_DBE_SearchModel.edmx</DependentUpon>
+      <DependentUpon>DBEDirectoryModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemCode.cs">
-      <DependentUpon>Exec_DBE_SearchModel.tt</DependentUpon>
+      <DependentUpon>DBEDirectoryEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NAICSCode.cs">
-      <DependentUpon>Exec_DBE_SearchModel.tt</DependentUpon>
+      <DependentUpon>DBEDirectoryEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CompanyItemCodeDesc.cs" />
@@ -205,6 +209,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Common.css" />
+    <Content Include="Content\delete_red.png" />
+    <Content Include="Content\edit.png" />
+    <Content Include="Content\FiscalUpdate.css" />
+    <Content Include="Content\save3.png" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -267,6 +275,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\print.css" />
     <Content Include="Content\themes\jtable\jtable-metro.css" />
     <Content Include="Content\themes\jtable\lightcolor\bg-thead.png" />
     <Content Include="Content\themes\jtable\lightcolor\close.png" />
@@ -289,19 +298,21 @@
     <Content Include="Content\themes\Metro\jquery-ui.css" />
     <Content Include="Content\themes\Metro\select2.css" />
     <Content Include="Content\themes\Metro\ui-icons_ffffff_0.png" />
+    <Content Include="Content\tick.png" />
+    <Content Include="Content\updated.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Exec_DBE_SearchModel.Context.tt">
+    <Content Include="Models\DBEDirectoryEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Exec_DBE_SearchModel.edmx</DependentUpon>
-      <LastGenOutput>Exec_DBE_SearchModel.Context.cs</LastGenOutput>
+      <LastGenOutput>DBEDirectoryEntities.Context.cs</LastGenOutput>
+      <DependentUpon>DBEDirectoryModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\Exec_DBE_SearchModel.tt">
+    <Content Include="Models\DBEDirectoryEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Exec_DBE_SearchModel.edmx</DependentUpon>
-      <LastGenOutput>Exec_DBE_SearchModel.cs</LastGenOutput>
+      <LastGenOutput>DBEDirectoryEntities.cs</LastGenOutput>
+      <DependentUpon>DBEDirectoryModel.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -309,13 +320,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\Exec_DBE_SearchModel.edmx">
+    <EntityDeploy Include="Models\DBEDirectoryModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Exec_DBE_SearchModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBEDirectoryModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Exec_DBE_SearchModel.edmx.diagram">
-      <DependentUpon>Exec_DBE_SearchModel.edmx</DependentUpon>
+    <Content Include="Models\DBEDirectoryModel.edmx.diagram">
+      <DependentUpon>DBEDirectoryModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.11.2.intellisense.js" />
     <Content Include="Scripts\dropdown.js" />
     <Content Include="Scripts\jquery-1.11.2.js" />
@@ -339,9 +351,12 @@
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\site-shared.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -361,17 +376,13 @@
     <Content Include="Views\DBECompany\_SearchResults.cshtml" />
     <Content Include="Views\DBECompany\_NAICS.cshtml" />
     <Content Include="Views\DBECompany\_ItemCodes.cshtml" />
-    <Content Include="Views\ItemCodes\Index.cshtml" />
-    <Content Include="Views\ItemCodes\Details.cshtml" />
-    <Content Include="Views\NAICS\Index.cshtml" />
-    <Content Include="Views\NAICS\Details.cshtml" />
+    <Content Include="Views\DBECompany\_CompanyDataList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\themes\jtable\lightcolor\blue\" />
     <Folder Include="Content\themes\jtable\lightcolor\green\" />
     <Folder Include="Content\themes\jtable\lightcolor\grey\" />
-    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

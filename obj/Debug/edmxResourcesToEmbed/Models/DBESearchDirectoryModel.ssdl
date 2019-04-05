@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBESearchDirectoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CompanyItemCodes">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="ItemCode" />
+    </Key>
+    <Property Name="CompanyID" Type="int" Nullable="false" />
+    <Property Name="ItemCode" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CompanyNAICSCodes">
+    <Key>
+      <PropertyRef Name="Companyid" />
+      <PropertyRef Name="NAICSCode" />
+    </Key>
+    <Property Name="Companyid" Type="int" Nullable="false" />
+    <Property Name="NAICSCode" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="Comments" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DBECompany">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="CompanyId" Type="int" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="DBAName" Type="varchar" MaxLength="45" />
+    <Property Name="OwnersFirstName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="OwnersLastName" Type="varchar" MaxLength="35" Nullable="false" />
+    <Property Name="CompanyAddress" Type="varchar" MaxLength="35" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="AltEmail" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="35" Nullable="false" />
+    <Property Name="State" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="Zip" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="Fax" Type="varchar" MaxLength="12" />
+    <Property Name="AltFax" Type="varchar" MaxLength="12" />
+    <Property Name="District" Type="varchar" MaxLength="2" />
+    <Property Name="DBE" Type="bit" />
+    <Property Name="ACDBE" Type="bit" />
+    <Property Name="SBP" Type="bit" />
+    <Property Name="MBE" Type="bit" />
+    <Property Name="Certified" Type="bit" />
+    <Property Name="CertificationDate" Type="datetime" />
+    <Property Name="DecertificationDate" Type="datetime" />
+    <Property Name="DecertReason" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="ItemCodes">
+    <Key>
+      <PropertyRef Name="ItemCode" />
+    </Key>
+    <Property Name="ItemCode" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="NAICSCodes">
+    <Key>
+      <PropertyRef Name="NAICSCode" />
+    </Key>
+    <Property Name="NAICSCode" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'DBESearchDirectory.dbo.Referrals' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Referrals">
+          <Property Name="Contact" Type="nvarchar" MaxLength="255" />
+          <Property Name="Organization" Type="nvarchar" MaxLength="255" />
+          <Property Name="Street" Type="nvarchar" MaxLength="255" />
+          <Property Name="POBox" Type="float" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="255" />
+          <Property Name="OfficePhone" Type="nvarchar" MaxLength="255" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="255" />
+          <Property Name="CellPhone" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="District" Type="float" />
+          <Property Name="County" Type="nvarchar" MaxLength="255" />
+          <Property Name="County1" Type="nvarchar" MaxLength="255" />
+          <Property Name="County2" Type="nvarchar" MaxLength="255" />
+          <Property Name="County3" Type="nvarchar" MaxLength="255" />
+          <Property Name="County4" Type="nvarchar" MaxLength="255" />
+          <Property Name="County5" Type="nvarchar" MaxLength="255" />
+          <Property Name="RevisionDate" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <Association Name="FK_CompanyItemCodes_DBECompany">
+    <End Role="DBECompany" Type="Self.DBECompany" Multiplicity="1" />
+    <End Role="CompanyItemCodes" Type="Self.CompanyItemCodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DBECompany">
+        <PropertyRef Name="CompanyId" />
+      </Principal>
+      <Dependent Role="CompanyItemCodes">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyItemCodes_ItemCodes">
+    <End Role="ItemCodes" Type="Self.ItemCodes" Multiplicity="1" />
+    <End Role="CompanyItemCodes" Type="Self.CompanyItemCodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemCodes">
+        <PropertyRef Name="ItemCode" />
+      </Principal>
+      <Dependent Role="CompanyItemCodes">
+        <PropertyRef Name="ItemCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyNAICSCodes_DBECompany">
+    <End Role="DBECompany" Type="Self.DBECompany" Multiplicity="1" />
+    <End Role="CompanyNAICSCodes" Type="Self.CompanyNAICSCodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DBECompany">
+        <PropertyRef Name="CompanyId" />
+      </Principal>
+      <Dependent Role="CompanyNAICSCodes">
+        <PropertyRef Name="Companyid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyNAICSCodes_NAICSCodes">
+    <End Role="NAICSCodes" Type="Self.NAICSCodes" Multiplicity="1" />
+    <End Role="CompanyNAICSCodes" Type="Self.CompanyNAICSCodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NAICSCodes">
+        <PropertyRef Name="NAICSCode" />
+      </Principal>
+      <Dependent Role="CompanyNAICSCodes">
+        <PropertyRef Name="NAICSCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBESearchDirectoryModelStoreContainer">
+    <EntitySet Name="CompanyItemCodes" EntityType="Self.CompanyItemCodes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CompanyNAICSCodes" EntityType="Self.CompanyNAICSCodes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DBECompany" EntityType="Self.DBECompany" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemCodes" EntityType="Self.ItemCodes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NAICSCodes" EntityType="Self.NAICSCodes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CompanyItemCodes_DBECompany" Association="Self.FK_CompanyItemCodes_DBECompany">
+      <End Role="DBECompany" EntitySet="DBECompany" />
+      <End Role="CompanyItemCodes" EntitySet="CompanyItemCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyItemCodes_ItemCodes" Association="Self.FK_CompanyItemCodes_ItemCodes">
+      <End Role="ItemCodes" EntitySet="ItemCodes" />
+      <End Role="CompanyItemCodes" EntitySet="CompanyItemCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyNAICSCodes_DBECompany" Association="Self.FK_CompanyNAICSCodes_DBECompany">
+      <End Role="DBECompany" EntitySet="DBECompany" />
+      <End Role="CompanyNAICSCodes" EntitySet="CompanyNAICSCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyNAICSCodes_NAICSCodes" Association="Self.FK_CompanyNAICSCodes_NAICSCodes">
+      <End Role="NAICSCodes" EntitySet="NAICSCodes" />
+      <End Role="CompanyNAICSCodes" EntitySet="CompanyNAICSCodes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

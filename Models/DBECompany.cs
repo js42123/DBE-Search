@@ -18,7 +18,7 @@ namespace DBESearch.Models
         public DBECompany()
         {
             this.CompanyItemCodes = new HashSet<CompanyItemCode>();
-            this.NAICSCodes = new HashSet<NAICSCode>();
+            this.CompanyNAICSCodes = new HashSet<CompanyNAICSCode>();
         }
     
         public int CompanyId { get; set; }
@@ -28,13 +28,11 @@ namespace DBESearch.Models
         public string OwnersLastName { get; set; }
         public string CompanyAddress { get; set; }
         public string Email { get; set; }
-        public string AltEmail { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
-        public string AltFax { get; set; }
         public string District { get; set; }
         public Nullable<bool> DBE { get; set; }
         public Nullable<bool> ACDBE { get; set; }
@@ -44,10 +42,27 @@ namespace DBESearch.Models
         public Nullable<System.DateTime> CertificationDate { get; set; }
         public Nullable<System.DateTime> DecertificationDate { get; set; }
         public string DecertReason { get; set; }
+        public string County { get; set; }
+        public Nullable<bool> Suspended { get; set; }
+        public Nullable<System.DateTime> Suspension_Date { get; set; }
+        public Nullable<bool> DWBE { get; set; }
+        public Nullable<bool> WBE { get; set; }
+        public Nullable<bool> ACDWBE { get; set; }
+        public Nullable<bool> SmallBusiness { get; set; }
+        public Nullable<System.DateTime> OnSiteReviewDate { get; set; }
+        public string TypeofFirm { get; set; }
+        public Nullable<System.DateTime> DateRequestedLastOnSite { get; set; }
+        public string DeskAuditReview { get; set; }
+        public string Race { get; set; }
+        public string Gender { get; set; }
+        public string MonthofAnnualAffidavit { get; set; }
+        public Nullable<System.DateTime> RenewalDate { get; set; }
+        public Nullable<bool> ACWBE { get; set; }
+        public string Website { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyItemCode> CompanyItemCodes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NAICSCode> NAICSCodes { get; set; }
+        public virtual ICollection<CompanyNAICSCode> CompanyNAICSCodes { get; set; }
     }
 }

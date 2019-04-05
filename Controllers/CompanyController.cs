@@ -11,7 +11,7 @@ namespace DBESearch.Controllers
     public class CompanyController : Controller
     {
 
-        private Exec_DBE_DirectoryEntities1 db = new Exec_DBE_DirectoryEntities();
+        private DBESearchDirectoryEntities db = new DBESearchDirectoryEntities();
 
         // GET: Company
         public ActionResult Index()
@@ -21,7 +21,7 @@ namespace DBESearch.Controllers
         }
 
         [HttpPost]
-        public JsonResult CompanyList(int jtStartIndex =0, int JtPageSize =0, string jtSorting = null)
+        public JsonResult CompanyList(int jtStartIndex = 0, int JtPageSize =0, string jtSorting = null)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace DBESearch.Controllers
                     District = c.District,
                     DBE = c.DBE,
                     ACDBE = c.ACDBE,
-                    SPB = c.SBP,
+                    SPP = c.SBP,
                     MBE = c.MBE,
                     Certified = c.Certified
 

@@ -1,0 +1,186 @@
+﻿@model IEnumerable<DBESearch.Models.DBECompany>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="CompanyInfoContainer"></div>
+
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/jtable")
+
+    <script>
+    $(document).ready(function () {
+        $('#CompanyInfoContainer').jtable({
+            title: 'DBE Companies on recrod with ARDOT',
+            paging: true,
+            pageSize: 20,
+            sorting: true,
+            defaultSorting: 'CompanyId ASC',
+            actions: {
+                listAction:   '/Company/CompanyList'
+              
+            },
+            fields: {
+                CompanyId: {
+                    title: 'CompanyId',
+                    width: '2%',
+                    key: true,
+                    list: false,
+                    //create: true,
+                    edit: false
+
+                },
+                Certified: {
+                    title: 'Certified',
+                    width: '2%'
+                },
+                CompanyName: {
+                    title: 'Company',
+                    width: '15%'
+                },
+                //DBAName: {
+                //    title: 'DBA',
+                //    width: '15%'
+                //},
+                //Child Table for department codes
+
+
+                //CHILD TABLE DEFINITION FOR "PHONE NUMBERS"
+                //Phones: {
+                //    title: '',
+                //    width: '3%',
+                //    sorting: false,
+                //    edit: false,
+                //    create: false,
+                //    display: function () {
+                //        //Create an image that will be used to open child table
+                //        var $img = $('<img src="/Content/images/bullet.png" title="Department Codes" />');
+                //        //Open child table when user clicks the image
+                //        $img.click(function () {
+                //            $('#CompanyInfoContainer').jtable('openChildTable',
+                //                    $img.closest('tr'),
+                //                    {
+                //                        title: '' + ' Company Item Codes',
+                //                        actions: {
+                //                            listAction: '/company/codelist/3',//?StudentId=' + studentData.record.StudentId,
+                //                            //deleteAction: '/Demo/DeletePhone',
+                //                            //updateAction: '/Demo/UpdatePhone',
+                //                            //createAction: '/Demo/CreatePhone'
+                //                        },
+                //                        fields: {
+                //                            CompanyId: {
+                //                                key: true,
+                //                                create: false,
+                //                                edit: false,
+                //                                list: false
+                //                            },
+                //                            ItemCode: {
+                //                                title: 'Item Code',
+                //                                width: '30%',
+                //                            },
+                //                            Comments: {
+                //                                title: 'Comments',
+                //                                width: '30%'
+                //                            }
+                //                        }
+                //                    }, function (data) { //opened handler
+                //                        data.childTable.jtable('load');
+                //                    });
+                //        });
+                //        //Return image to show on the person row
+                //        return $img;
+                //    }
+                //},
+
+
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////
+                //CompanyDepartmentCodes: {
+                //    title: '',
+                //    width: '3%' ,
+                //    sorting: false,
+                //    edit: false,
+                //    create: false,
+                //    display: function () {
+                //        var $img = $('<img src="/Content/images/details.png" title="Department Codes" />');
+                //        $img.click(function () {
+                //            $('#CompanyInfoContainer').jtable('openChildTable',
+                //            $img.closest('tr'),
+                //            {
+                //                title: 'Departmental Codes',
+                //                actions:''
+                //            },
+                //                fields: {}
+                //        }
+                //           }
+
+                //   },
+
+                OwnersFirstName: {
+                    title: 'Owner First Name',
+                    width: '5%',
+                    list: false
+                },
+                OwnersLastName: {
+                    title: 'Owner Last Name',
+                    width: '5%',
+                    list: false
+                },
+                CompanyAddress: {
+                    title: 'Company Address',
+                    width: '10%'
+                },
+                City: {
+                    title: 'City',
+                    width: '10%'
+                },
+                State: {
+                    title: 'State',
+                    width: '5%'
+                },
+                Zip: {
+                    title: 'Zip Code',
+                    width: '5%',
+                    list: false
+                },
+                Phone: {
+                    title: 'Phone Number',
+                    width: '10%'
+                },
+                ShowDetailColumn: {
+                    title: 'Details',
+                    display: function (data) {
+                        return '<a href="/company/details/' + data.record.CompanyId + '" target="_blank' + '"><img src="edit.png" /></a>';
+                    }
+                }
+                //District: {
+                //    title: 'District',
+                //    width: '2%'
+                //},
+                //DBE: {
+                //    title: 'DBE',
+                //    width: '2%'
+                //},
+                //ACDBE: {
+                //    title: 'ACDBE',
+                //    width: '2%'
+                //},
+                //SPB: {
+                //    title: 'SPB',
+                //    width: '2%'
+                //},
+                //MBE: {
+                //    title: 'MBE',
+                //    width: '2%'
+                //}
+            }
+        });
+        $('#CompanyInfoContainer').jtable('load');
+    });
+    </script>
+}

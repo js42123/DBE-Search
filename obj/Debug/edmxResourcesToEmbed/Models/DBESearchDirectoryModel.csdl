@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBESearchDirectoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CompanyItemCode">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="ItemCode" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="ItemCode" Type="Int32" Nullable="false" />
+    <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DBECompany" Relationship="Self.FK_CompanyItemCodes_DBECompany" FromRole="CompanyItemCodes" ToRole="DBECompany" />
+    <NavigationProperty Name="ItemCode1" Relationship="Self.FK_CompanyItemCodes_ItemCodes" FromRole="CompanyItemCodes" ToRole="ItemCodes" />
+  </EntityType>
+  <EntityType Name="CompanyNAICSCode">
+    <Key>
+      <PropertyRef Name="Companyid" />
+      <PropertyRef Name="NAICSCode" />
+    </Key>
+    <Property Name="Companyid" Type="Int32" Nullable="false" />
+    <Property Name="NAICSCode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DBECompany" Relationship="Self.FK_CompanyNAICSCodes_DBECompany" FromRole="CompanyNAICSCodes" ToRole="DBECompany" />
+    <NavigationProperty Name="NAICSCode1" Relationship="Self.FK_CompanyNAICSCodes_NAICSCodes" FromRole="CompanyNAICSCodes" ToRole="NAICSCodes" />
+  </EntityType>
+  <EntityType Name="DBECompany">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DBAName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="OwnersFirstName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OwnersLastName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CompanyAddress" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AltEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fax" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="AltFax" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="District" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="DBE" Type="Boolean" />
+    <Property Name="ACDBE" Type="Boolean" />
+    <Property Name="SBP" Type="Boolean" />
+    <Property Name="MBE" Type="Boolean" />
+    <Property Name="Certified" Type="Boolean" />
+    <Property Name="CertificationDate" Type="DateTime" Precision="3" />
+    <Property Name="DecertificationDate" Type="DateTime" Precision="3" />
+    <Property Name="DecertReason" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CompanyItemCodes" Relationship="Self.FK_CompanyItemCodes_DBECompany" FromRole="DBECompany" ToRole="CompanyItemCodes" />
+    <NavigationProperty Name="CompanyNAICSCodes" Relationship="Self.FK_CompanyNAICSCodes_DBECompany" FromRole="DBECompany" ToRole="CompanyNAICSCodes" />
+  </EntityType>
+  <EntityType Name="ItemCode">
+    <Key>
+      <PropertyRef Name="ItemCode1" />
+    </Key>
+    <Property Name="ItemCode1" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CompanyItemCodes" Relationship="Self.FK_CompanyItemCodes_ItemCodes" FromRole="ItemCodes" ToRole="CompanyItemCodes" />
+  </EntityType>
+  <EntityType Name="NAICSCode">
+    <Key>
+      <PropertyRef Name="NAICSCode1" />
+    </Key>
+    <Property Name="NAICSCode1" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CompanyNAICSCodes" Relationship="Self.FK_CompanyNAICSCodes_NAICSCodes" FromRole="NAICSCodes" ToRole="CompanyNAICSCodes" />
+  </EntityType>
+  <Association Name="FK_CompanyItemCodes_DBECompany">
+    <End Role="DBECompany" Type="Self.DBECompany" Multiplicity="1" />
+    <End Role="CompanyItemCodes" Type="Self.CompanyItemCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DBECompany">
+        <PropertyRef Name="CompanyId" />
+      </Principal>
+      <Dependent Role="CompanyItemCodes">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyItemCodes_ItemCodes">
+    <End Role="ItemCodes" Type="Self.ItemCode" Multiplicity="1" />
+    <End Role="CompanyItemCodes" Type="Self.CompanyItemCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemCodes">
+        <PropertyRef Name="ItemCode1" />
+      </Principal>
+      <Dependent Role="CompanyItemCodes">
+        <PropertyRef Name="ItemCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyNAICSCodes_DBECompany">
+    <End Role="DBECompany" Type="Self.DBECompany" Multiplicity="1" />
+    <End Role="CompanyNAICSCodes" Type="Self.CompanyNAICSCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DBECompany">
+        <PropertyRef Name="CompanyId" />
+      </Principal>
+      <Dependent Role="CompanyNAICSCodes">
+        <PropertyRef Name="Companyid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyNAICSCodes_NAICSCodes">
+    <End Role="NAICSCodes" Type="Self.NAICSCode" Multiplicity="1" />
+    <End Role="CompanyNAICSCodes" Type="Self.CompanyNAICSCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NAICSCodes">
+        <PropertyRef Name="NAICSCode1" />
+      </Principal>
+      <Dependent Role="CompanyNAICSCodes">
+        <PropertyRef Name="NAICSCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBESearchDirectoryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CompanyItemCodes" EntityType="Self.CompanyItemCode" />
+    <EntitySet Name="CompanyNAICSCodes" EntityType="Self.CompanyNAICSCode" />
+    <EntitySet Name="DBECompanies" EntityType="Self.DBECompany" />
+    <EntitySet Name="ItemCodes" EntityType="Self.ItemCode" />
+    <EntitySet Name="NAICSCodes" EntityType="Self.NAICSCode" />
+    <AssociationSet Name="FK_CompanyItemCodes_DBECompany" Association="Self.FK_CompanyItemCodes_DBECompany">
+      <End Role="DBECompany" EntitySet="DBECompanies" />
+      <End Role="CompanyItemCodes" EntitySet="CompanyItemCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyItemCodes_ItemCodes" Association="Self.FK_CompanyItemCodes_ItemCodes">
+      <End Role="ItemCodes" EntitySet="ItemCodes" />
+      <End Role="CompanyItemCodes" EntitySet="CompanyItemCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyNAICSCodes_DBECompany" Association="Self.FK_CompanyNAICSCodes_DBECompany">
+      <End Role="DBECompany" EntitySet="DBECompanies" />
+      <End Role="CompanyNAICSCodes" EntitySet="CompanyNAICSCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyNAICSCodes_NAICSCodes" Association="Self.FK_CompanyNAICSCodes_NAICSCodes">
+      <End Role="NAICSCodes" EntitySet="NAICSCodes" />
+      <End Role="CompanyNAICSCodes" EntitySet="CompanyNAICSCodes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

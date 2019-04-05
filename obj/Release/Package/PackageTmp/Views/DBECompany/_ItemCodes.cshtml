@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DBESearch.Models.ItemCode>
+<style>
+    table {
+        border: 1px solid black;
+        background-color: white;
+        border-collapse: collapse;
+        width: 75%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        height: 50px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+
+    tr:hover {
+        background-color: #d1d1d1
+    }
+
+    tr:hover {
+        cursor: pointer
+    }
+</style>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <p>Click the ARDOT Item Codes to search for:</p>
+
+    <table id="ItemCodesTable" style="margin: 0px auto;">
+        @foreach (var code in Model)
+        {
+            <tr style="border: 1px solid black;">
+                <td>@code.ItemCode1</td>
+                <td>@code.Description</td>
+            </tr>
+        }
+
+    </table>
+
+</body>
+</html>

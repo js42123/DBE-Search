@@ -19,6 +19,7 @@ namespace DBESearch.ViewModels
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
+        public string County { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
         public string AltFax { get; set; }
@@ -31,6 +32,8 @@ namespace DBESearch.ViewModels
         public Nullable<System.DateTime> CertificationDate { get; set; }
         public Nullable<System.DateTime> DecertificationDate { get; set; }
         public string DecertReason { get; set; }
+        public Nullable<bool> Suspended { get; set; }
+        public string Website { get; set; }
 
         public List<CompanyItemCodeDesc> CompanyItemCodesList { get; set; }
         public List<CompanyNAICSCodeDesc> CompanyNAICSCodesList { get; set; }

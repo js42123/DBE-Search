@@ -1,0 +1,486 @@
+﻿/*! =========================================================
+    *
+    * ArDot app.css Version b1.5
+    *
+    * =========================================================
+   */
+
+/* FORM LAYOUT ELEMENTS*/
+
+
+p {
+    text-decoration-color: black;
+}
+.container {
+    width: auto;
+}
+
+.jumbotron-fluid {
+    background-color: #6A7990;
+    background: linear-gradient(90deg, #6A7990, #2B3A53);
+}
+
+
+
+h1,
+h2,
+h3,
+.h1,
+.h2,
+.h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h4,
+h5,
+h6,
+.h4,
+.h5,
+.h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h1,
+.h1 {
+    font-size: 3.3125rem;
+    line-height: 1.15em;
+}
+
+h2,
+.h2 {
+    font-size: 2.25rem;
+    line-height: 1.5em;
+}
+
+h3,
+.h3 {
+    font-size: 1.5625rem;
+    line-height: 1.4em;
+}
+
+h4,
+.h4 {
+    font-size: 1.125rem;
+    line-height: 1.5em;
+}
+
+h5,
+.h5 {
+    font-size: 1.0625rem;
+    line-height: 1.55em;
+    margin-bottom: 15px;
+}
+
+h6,
+.h6 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+p {
+    font-size: 14px;
+    margin: 0 0 10px;
+    color: black;
+}
+
+b {
+    font-weight: 700;
+}
+
+small,
+.small {
+    font-size: 75%;
+    color: #777;
+}
+
+.div root,
+.title,
+.card-title,
+.info-title,
+.footer-brand,
+.footer-big h5,
+.footer-big h4,
+.media .media-heading {
+    font-weight: 700;
+    font-family: "Roboto Slab", "Times New Roman", serif;
+    color: aliceblue;
+    
+}
+
+    .div root,
+    .title,
+    .title a,
+    .card-title,
+    .card-title a,
+    .info-title,
+    .info-title a,
+    .footer-brand,
+    .footer-brand a,
+    .footer-big h5,
+    .footer-big h5 a,
+    .footer-big h4
+    .footer-big h4 a,
+    .media .media-heading,
+    .media .media-heading a {
+        color: #3C4858;
+        text-decoration: none;
+    }
+
+h2.title {
+    margin-bottom: 1rem;
+}
+
+.description,
+.card-description,
+.footer-big p {
+    color: #999;
+}
+.main-raised {
+    margin: 0px 0px 0px;
+}
+
+.fieldset {
+    margin: 0px 0px 0px;
+}
+
+@media screen and (min-width: 992px) {
+    .main-raised {
+        background-color: #EAEFF2;
+        margin: -90px 30px 0px;
+    }
+}
+
+.navbar-dark {
+    -webkit-box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+}
+
+.blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    border-left: 5px solid #eee;
+}
+
+    .blockquote p {
+        font-size: 1.063rem;
+        font-style: italic;
+    }
+
+.text-muted,
+.bmd-help {
+    color: #6c757d !important;
+}
+
+/* ---------------------------- */
+
+.nav-bg-color {
+    background-color: #2B3A53;
+}
+
+.bg-primary {
+    background-color: #fff !important;
+}
+
+.fixed-top {
+    position: absolute;
+}
+
+body {
+    padding-top: 80px;
+}
+
+/* Mega Menu: adds some margin below the link sets  */
+
+.navbar .dropdown-menu div[class*="col"] {
+    margin-bottom: 1rem;
+}
+
+.mega-menu {
+    background-color: #6A7990;
+}
+
+    .mega-menu ul {
+        margin-bottom: -1rem;
+    }
+
+.navbar .dropdown-menu {
+    border: none;
+    margin-top: -1rem;
+    padding-top: 1.8rem;
+    /* background-color: #6A7990 !important; */
+    background-color: transparent !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, .8);
+}
+
+@media screen and (min-width: 768px) {
+    .navbar-dark .dropdown-menu .col-md-4 {
+        border-left: 0.5px solid rgba(234, 239, 242, 0.3);
+    }
+}
+
+.navbar-dark .dropdown-menu .nav-link {
+    font-size: 1.125rem;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover,
+.nav-link:focus,
+.nav-link:active {
+    color: #e32526 !important;
+}
+
+.navbar-dark .navbar-brand {
+    color: white;
+}
+
+/* breakpoint and up - mega dropdown styles */
+
+@media screen and (min-width: 992px) {
+    .fixed-top {
+        position: fixed;
+    }
+    /* remove the padding from the navbar so the dropdown hover state is not broken */
+    .navbar {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+        /* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
+        .navbar .nav-item {
+            padding: .5rem .5rem;
+            margin: 0 .25rem;
+        }
+        /* makes the dropdown full width  */
+        .navbar .dropdown {
+            position: static;
+        }
+
+        .navbar .dropdown-menu {
+            width: 100%;
+            left: 0;
+            right: 0;
+            /*  height of nav-item  */
+            top: 64px;
+        }
+        /* shows the dropdown menu on hover */
+        .navbar .dropdown:hover .dropdown-menu,
+        .navbar .dropdown .dropdown-menu:hover {
+            display: block !important;
+        }
+
+    .navbar-dark .dropdown-menu .nav-link:focus,
+    .navbar-dark .dropdown-menu .nav-link:hover {
+        font-weight: 400;
+        background-color: #C5CDDB;
+        border-radius: 6px;
+    }
+
+    .navbar .dropdown-menu {
+        background-color: #fff;
+    }
+}
+
+@media (min-width: 1200px) {
+    .navbar .dropdown-menu {
+        top: 45px;
+    }
+}
+
+body {
+    background-color: #2B3A53;
+}
+
+a {
+    color: #2a338f;
+}
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #e32526;
+        text-decoration-line: none;
+    }
+
+/* Page Header/Title */
+
+.datagrid {
+    background-color: #6A7990;
+    background: linear-gradient(90deg, #6A7990, #2B3A53);
+    box-sizing: inherit;
+    margin-bottom: 10px;
+    padding: -10em;
+}
+
+    .datagrid h1 {
+        font-family: "Roboto Condensed", "Times New Roman", serif;
+        color: #EAEFF2;
+        text-align: center;
+        margin-top: 0em;
+        font-weight: 400;
+        font-size: 2.5rem;
+        text-shadow: 1px 1px 1px #000, 3px 3px 5px #2B3A53;
+        line-height: 1.15em;
+        display: block;
+   
+       
+    }
+.jumbotron-fluid.page-header h1 {
+    font-family: "Roboto Condensed", "Times New Roman", serif;
+    color: #EAEFF2;
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 2.5rem;
+    text-shadow: 1px 1px 1px #000, 3px 3px 5px #2B3A53;
+}
+.main {
+    background-color: #EAEFF2;
+    position: relative;
+    z-index: 3;
+    padding: 0.5rem;
+  
+}
+
+@media screen and (max-width: 575.98px) {
+    .navbar .dropdown-menu {
+        top: 20px;
+    }
+
+    .jumbotron-fluid.page-header {
+        margin-top: -3rem;
+    }
+    /* .jumbotron-fluid {
+    background: linear-gradient(90deg, #6A7990, #2B3A53);
+  }*/ 
+   .main-raised {
+        margin: -65px 0px 4px;
+        border-radius: 10px;
+        background-color: white;
+    }
+
+    .card.contact .card-body .search-input {
+        background-color: white;
+    }
+
+    .card-body.links li {
+        padding: 0 0 1rem 0;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .jumbotron-fluid.page-header {
+        margin-top: -5rem;
+    }
+
+    .fieldset {
+        margin: -90px 6px 10px;
+        border-radius: 6px;
+    }
+
+    .card-body.links li {
+        padding: 0 0 8px 0;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .jumbotron-fluid.page-header {
+        margin-top: -3.5rem;
+    }
+
+    .fieldset {
+        background-color: white;
+        margin: -90px 30px 0px;
+    }
+
+    .card-body.links li {
+        padding: 0 0 5px 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .jumbotron-fluid.page-header {
+        margin-top: -5rem;
+    }
+}
+
+/* Card: Contact Information */
+
+.ContactInfo {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.card.contact .card-header {
+    /* background-color: #c8c8c8;  */
+    background-color: #C5CDDB;
+}
+
+.card.contact .card-body {
+    /* background-color: #ddd; */
+    background-color: #fafafa;
+}
+
+.card-body.links li {
+    font-weight: 400;
+    /* padding: 0 0 7px 0; */
+}
+/* bullet disk to triangle */
+
+.card-body.links ul {
+    list-style: none;
+    margin-bottom: 0;
+}
+
+.card-body.links li {
+    position: relative;
+}
+
+    .card-body.links li::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-color: transparent #C5CDDB;
+        border-width: 5px 0 5px 12px;
+        position: absolute;
+        top: .5em;
+        left: -1.4em;
+    }
+
+
+
+.even {
+    background-color: #d6dce8;
+}
+.odd {
+    background-color: #fff;
+}
+
+.horiz_container ul{float:none}
+
+
+
+/* 
+ // Extra small devices (portrait phones, less than 576px)
+ // No media query for `xs` since this is the default in Bootstrap
+ 
+ // Small devices (landscape phones, 576px and up)
+ @media (min-width: 576px) { ... }
+ 
+ // Medium devices (tablets, 768px and up)
+ @media (min-width: 768px) { ... }
+ 
+ // Large devices (desktops, 992px and up)
+ @media (min-width: 992px) { ... }
+ 
+ // Extra large devices (large desktops, 1200px and up)
+ @media (min-width: 1200px) { ... }*/
+
+
+

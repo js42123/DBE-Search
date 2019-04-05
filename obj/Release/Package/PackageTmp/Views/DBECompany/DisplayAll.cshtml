@@ -1,0 +1,71 @@
+﻿@model IEnumerable<DBESearch.Models.DBE_Company>
+<head>
+    <title>List</title>
+
+    @*<script type="text/javascript"
+                src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js">
+        </script>*@
+    @Styles.Render("~/Scripts/jtable/themes/metro/blue/jtable.css")
+</head>
+
+<body>
+
+    <div>
+        <h1>@ViewBag.Message</h1>
+    </div>
+
+    <div id="CompanyTable" style="width: 980px; margin: auto;"></div>
+
+
+</body>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+@Scripts.Render("~/Scripts/jquery.jtable.js")
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+            $('#CompanyTable').jtable({
+                title: 'DBE Companies Sortable',
+                paging: true,
+                pageSize: 10,
+                sorting: true,
+                defaultSorting: 'CompanyName asc',
+                actions: {
+                    listAction: '/DBECompany/DBEList'
+                },
+                fields: {
+
+                    CompanyId: {
+                        key: true,
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+                    CompanyName: {
+                        title: 'Company Name',
+                        width: '40%'
+                    },
+                    CompanyAddress: {
+                        title: 'Address',
+                        width: '35%'
+                    },
+                    City: {
+                        title: 'City',
+                        width: '40'
+                    },
+                    State: {
+                        title: 'State',
+                        width: '5%'
+                    },
+                    Zip: {
+                        title: 'Zip',
+                        width: '15%'
+                    }
+                }
+            });
+            $('#CompanyTable').jtable('load');
+        });
+</script>
+
