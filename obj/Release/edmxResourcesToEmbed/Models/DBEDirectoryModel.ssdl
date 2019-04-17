@@ -1,5 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DBESearchDirectoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'DBEDirectory.dbo.ARZipCodesbyDistrict' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ARZipCodesbyDistrict">
+          <Property Name="zip" Type="nvarchar" MaxLength="255" />
+          <Property Name="empflag" Type="nvarchar" MaxLength="255" />
+          <Property Name="emp_nf" Type="nvarchar" MaxLength="255" />
+          <Property Name="emp" Type="float" />
+          <Property Name="qp1_nf" Type="nvarchar" MaxLength="255" />
+          <Property Name="qp1" Type="float" />
+          <Property Name="ap_nf" Type="nvarchar" MaxLength="255" />
+          <Property Name="ap" Type="float" />
+          <Property Name="est" Type="float" />
+          <Property Name="city" Type="nvarchar" MaxLength="255" />
+          <Property Name="stabbr" Type="nvarchar" MaxLength="255" />
+          <Property Name="County_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="DistrictNumber" Type="int" />
+          <Property Name="DistrictName" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
   <EntityType Name="CompanyItemCodes">
     <Key>
       <PropertyRef Name="CompanyID" />
@@ -59,6 +77,7 @@
     <Property Name="RenewalDate" Type="smalldatetime" />
     <Property Name="ACWBE" Type="bit" />
     <Property Name="County" Type="varchar" MaxLength="50" />
+    <Property Name="Website" Type="varchar" MaxLength="70" />
   </EntityType>
   <EntityType Name="ItemCodes">
     <Key>

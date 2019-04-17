@@ -52,12 +52,16 @@
                         <div class="col-xs-10"><b>@(item.Email == null || item.Email == "" ? "Unavailable" : item.Email)</b></div>
                     </div>
                     <div class="row">
+                        <div class="col-xs-2"><b>Website:</b></div>
+                        <div class="col-xs-10"><b>@(item.Website == null || item.Website == "" ? "Unavailable" : item.Website)</b></div>
+                    </div>
+                    <div class="row">
                         <div class="col-xs-2"><b>County:</b></div>
                         <div class="col-xs-10"><b>@(item.County == null || item.County == "" ? "Unavailable" : item.County)</b></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-2"><b>Certifications:</b></div>
-                        <div class="col-xs-10" style="display:inline">                            
+                        <div class="col-xs-10" style="display:inline">
                             @if (item.DBE == true)
                             {<p style="display:inline"><b>DBE</b></p>}
                             @if (item.ACDBE == true)
@@ -65,7 +69,7 @@
                             @if (item.MBE == true)
                             {<p style="display:inline"><b>MBE</b></p>}
                             @if (item.SBP == true)
-                            {<p style="display:inline"><b>SBP</b></p>}                            
+                            {<p style="display:inline"><b>SBP</b></p>}
                         </div>
                     </div>
                 }

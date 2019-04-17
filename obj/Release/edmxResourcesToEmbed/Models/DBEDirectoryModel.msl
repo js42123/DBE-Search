@@ -22,6 +22,7 @@
     <EntitySetMapping Name="DBECompanies">
       <EntityTypeMapping TypeName="DBESearchDirectoryModel.DBECompany">
         <MappingFragment StoreEntitySet="DBECompany">
+          <ScalarProperty Name="Website" ColumnName="Website" />
           <ScalarProperty Name="ACWBE" ColumnName="ACWBE" />
           <ScalarProperty Name="RenewalDate" ColumnName="RenewalDate" />
           <ScalarProperty Name="MonthofAnnualAffidavit" ColumnName="MonthofAnnualAffidavit" />

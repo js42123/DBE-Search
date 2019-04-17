@@ -6,14 +6,14 @@
 @section scripts{
     @*@Scripts.Render("~/bundles/jqueryui")*@
     <style>
-         p, .row, .panel-body {
+        p, .row, .panel-body {
             color: #474747;
             font-family: Arial;
-        }   
+        }
     </style>
     <script type="text/javascript">
 
-        function clearform() {   
+        function clearform() {
             $('#DBESearchForm')[0].reset();
             $('#States').multiselect('refresh');
             $('#OwnerZipCodes').multiselect('refresh');
@@ -22,11 +22,11 @@
             $('#Cities').multiselect('refresh');
             $('#Districts').multiselect('refresh');
             $('#Counties').multiselect('refresh');
-            };                                           
+            };
 
         function clearNAICS() {
             $('#NAICSddl').multiselect('deselectAll', false);
-            $('#NAICSddl').multiselect('updateButtonText');         
+            $('#NAICSddl').multiselect('updateButtonText');
         };
         function clearItemCodes() {
             $('#Itemddl').multiselect('deselectAll', false);
@@ -44,11 +44,11 @@
             $('#OwnerZipCodes').multiselect('deselectAll', false);
             $('#OwnerZipCodes').multiselect('updateButtonText');
         };
-        function clearDistricts() {            
+        function clearDistricts() {
             $('#Districts').multiselect('deselectAll', false);
             $('#Districts').multiselect('updateButtonText');
         };
-        function clearCounties() {            
+        function clearCounties() {
             $('#Counties').multiselect('deselectAll', false);
             $('#Counties').multiselect('updateButtonText');
         };
@@ -67,22 +67,22 @@
             enableFiltering: true,
             enableCaseInsensitiveFiltering: true,
             buttonWidth: '300px',
-            
+
         });
         $('.mdb-select').multiselect({
             maxHeight: 200,
             nonSelectedText: "Search Code(s)",
             enableFiltering: true,
             enableCaseInsensitiveFiltering: true,
-            buttonWidth: '400px',
+            buttonWidth: '150px',
         });
         $('#ItemCodesList').multiselect({
             maxHeight: 200,
             nonSelectedText: "Search Item Code(s)",
             enableFiltering: true,
             enableCaseInsensitiveFiltering: true,
-            buttonWidth: '400px',
-            
+            buttonWidth: '150px',
+
         });
 
         $('#Cities').multiselect({
@@ -107,7 +107,7 @@
             enableFiltering: true,
             enableCaseInsensitiveFiltering: true,
             buttonWidth: '300px'
-        });        
+        });
 
         //Generates the NAICS Codes list to choose from
         function getForm() {
@@ -154,7 +154,12 @@
                 }
             });
             }
-
+        //$('#DBESearchForm').keypress(function (e) {
+        //    if (e.which === 13) {
+        //        $('#Search').trigger('click');
+        //        //e.preventDefault();
+        //        //return false;
+        //    }
         $('#Search').on('click', function (event) {
 
             if (!$('#DBE:checkbox').is(':checked') && !$('#ACDBE:checkbox').is(':checked') && !$('#SBP:checkbox').is(':checked') && !$('#MBE:checkbox').is(':checked')) {
@@ -225,6 +230,9 @@
 
             }
         });
+
+
+
         @*$("#Company").autocomplete({
             minLength: 2,
             delay: 0,
@@ -242,6 +250,18 @@
                 window.location = '@Url.Action("Index")?q=' + this.value;
         });*@
 
+        $("button").click(function () {
+            $("#table2excel").table2excel({
+                //exclude CSS class
+                exclude: ".noExl",
+                name: "DBE Directory All",
+                filename:"DBEDirectory"//do not include extensions
+            });
+        })
+
+
+
+
         $("#BusinessDescription").autocomplete({
             delay: 0,
             minLength: 2,
@@ -253,11 +273,11 @@
             error: function (data) {
                 $("#BusinessDescription").removeClass('ui-autocomplete-loading');
             }
-        }).keypress(function (e) {
+        });@*.keypress(function (e) {
             if (e.which === 13)
                 window.location = '@Url.Action("Index")?q=' + this.value;
-        });
-            
+        });*@
+
 
         $("#OwnerFirstName").autocomplete({
             minLength: 2,
@@ -269,10 +289,10 @@
             error: function (data) {
                 $("#OwnerFirstName").removeClass('ui-autocomplete-loading');
             }
-        }).keypress(function (e) {
+        });@*.keypress(function (e) {
             if (e.which === 13)
                 window.location = '@Url.Action("Index")?q=' + this.value;
-        });
+        });*@
 
 
         $("#OwnerLastName").autocomplete({
@@ -285,14 +305,14 @@
             error: function (data) {
                 $("#OwnerLastName").removeClass('ui-autocomplete-loading');
             }
-        }).keypress(function (e) {
+        });@*.keypress(function (e) {
             if (e.which === 13)
                 window.location = '@Url.Action("Index")?q=' + this.value;
-        });
+        });*@
 
 
         $("#AreaCode").autocomplete({
-            minLength: 2,
+            minLength: 3,
             source: '@Url.Action("GetAreaCode","DBECompany")',
             select: function (event, ui) {
                 if (ui.item.data)
@@ -301,10 +321,10 @@
             error: function (data) {
                 $("#AreaCode").removeClass('ui-autocomplete-loading');
             }
-        }).keypress(function (e) {
+        });@*.keypress(function (e) {
             if (e.which === 13)
                 window.location = '@Url.Action("Index")?q=' + this.value;
-        });
+        });*@
 
 
         $("#City").autocomplete({
@@ -334,132 +354,152 @@
             <div class="panel panel-primary">
                 <div class="panel-body panel-default">
                     <p style="color:#474747;font-family:Arial"><b>Welcom to the Arkansas Department of Transportation's DBE Search Site.</b></p>
-                    <p><b>The DBE directory is solely for the purpose of identifying those DBEs that are certified in the State of Arkansas. It is not intended to represent a listing of DBEs deemed eligible to participate on contracts, or to indicate that such DBEs satisfy any requirements which may affect DBEs ability to work on contracts.
-                          For more information, please visit <a href="http://www.arkansashighways.com" , target="_blank">Arkansas Department of Transportation.</a></b></p>
+                    <p><b>For more information, please visit <a href="http://www.arkansashighways.com" , target="_blank">Arkansas Department of Transportation.</a></b></p>
                     @*<a href="http://www.arkansashighways.com/ProgCon/letting/dbedirectory.pdf" , target="_blank">Link to Arkansas PDF</a><br />
-        <a href="https://txdot.txdotcms.com/?TN=txdot" , target="_blank">TxDOT Directory Search Page</a>*@
+                        <a href="https://txdot.txdotcms.com/?TN=txdot" , target="_blank">TxDOT Directory Search Page</a>*@
                 </div>
             </div>
-         </div>
+        </div>
     </section>
-        <div>
-            <div class="panel panel-group hidden-print">
-                <div class="panel panel-primary">
-                    <div class="panel-heading"><b>Search by Certification Type</b></div>
-                    <div class="panel-body">
-                        <div class="col-lg-12">
-                            <div class="row"><b>@Html.CheckBoxFor(model => model.ACDBE, new { @checked = "checked" })@Html.LabelFor(model => model.ACDBE)</b></div>
-                            <div class="row"><b>@Html.CheckBoxFor(model => model.DBE, new { @checked = "checked" })  @Html.LabelFor(model => model.DBE)</b></div>
-                            <div class="row"><b>@Html.CheckBoxFor(model => model.MBE, new { @checked = "checked" })  @Html.LabelFor(model => model.MBE)</b></div>
-                            <div class="row"><b>@Html.CheckBoxFor(model => model.SBP, new { @checked = "checked" })  @Html.LabelFor(model => model.SBP)</b></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-group hidden-print">
-                <div class="panel panel-primary">
-                    <div class="panel-heading"><b>Search by Company/DBA Name or Business Services Provided</b></div>
-                        <div class="panel-body">
-                            <div class="col-sm-11">
-                                <div class="form-inline">
-                                    <div class="row">
-                                        <b>@Html.LabelFor(model => model.Company,new { style = "width:142px;" })
-                                           @Html.TextBoxFor(model => model.Company, null, new { @class = "form-control", style = "width:300px;" })
-                                           @Html.HiddenFor(model => model.CompanyId)
-                                        </b>(Please enter a few letters of the company/DBA name. )
-                                    </div>
-                                </div>
-                                <div class="form-inline">
-                                    <div class="row">
-                                        <b>@Html.LabelFor(model => model.BusinessDescription)
-                                           @Html.TextBoxFor(model => model.BusinessDescription, null, new { @class = "form-control", style = "width:300px;" })
-                                           @Html.HiddenFor(model => model.BusinessDescription, new { @id = "currentBusinessDescription" })
-                                           </b>(Please enter a few letters of the company's services. i.e. construction. )
-                                    </div>
-                                </div>  
-                            </div>
-                        </div>
-                </div>
-            </div>
+    <div>
         <div class="panel panel-group hidden-print">
             <div class="panel panel-primary">
-                <div class="panel-heading"><b>Search by Departmental and NAICS Work Classification Codes</b></div>
+                <div class="panel-heading"><b>Search by Certification Type</b></div>
                 <div class="panel-body">
-                    <div class="col-sm-6">
-                        @Html.LabelFor(model => model.NAICS)
-                        @Html.DropDownListFor(model => model.NAICS, new MultiSelectList(ViewBag.NAICSList), new { multiple = "multiple", searchable = "Search here...", @class = "mdb-select md-form colorful-select dropdown-primary", @id = "NAICSddl" })
-                        <input type="button" class="btn btn-primary hidden-print" value="CLEAR NAICS" onclick="clearNAICS()" />
-                    </div>
-                    <div class="col-sm-6">
-                        @Html.LabelFor(model => model.ItemCode)
-                        @Html.DropDownListFor(model => model.ItemCode, new MultiSelectList(ViewBag.ItemCodesList), new { multiple = "multiple", searchable = "Search here...", @class = "mdb-select md-form colorful-select dropdown-primary", @id = "Itemddl" })
-                        <input type="button" class="btn btn-primary hidden-print" value="CLEAR ITEM CODES" onclick="clearItemCodes()" />
+                    <div class="col-lg-12">
+                        <div class="row"><b>@Html.CheckBoxFor(model => model.ACDBE, new { @checked = "checked" })@Html.LabelFor(model => model.ACDBE)</b></div>
+                        <div class="row"><b>@Html.CheckBoxFor(model => model.DBE, new { @checked = "checked" })  @Html.LabelFor(model => model.DBE)</b></div>
+                        <div class="row"><b>@Html.CheckBoxFor(model => model.MBE, new { @checked = "checked" })  @Html.LabelFor(model => model.MBE)</b></div>
+                        <div class="row"><b>@Html.CheckBoxFor(model => model.SBP, new { @checked = "checked" })  @Html.LabelFor(model => model.SBP)</b></div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="panel panel-group hidden-print">
             <div class="panel panel-primary">
-                <div class="panel-heading"><b>Search by Contact Person</b></div>
-                    <div class="panel-body">
-                        <div class="col-sm-12">
-                            <div class="form-inline">
-                                <div class="row">
-                                    @Html.LabelFor(model => model.OwnerFirstName)
-                                    @Html.TextBoxFor(model => model.OwnerFirstName, null, new { @class = "form-control", style = "width:300px;" })
-                                    @Html.HiddenFor(model => model.OwnerFirstName, new { @id = "currentOwnerFirstName" })
-                                    (Begin typing a few letters of the contact's first name.)
-                                </div>
-                            </div>
-                            <div class="form-inline">
-                                <div class="row">
-                                    @Html.LabelFor(model => model.OwnerLastName)
-                                    @Html.TextBoxFor(model => model.OwnerLastName, null, new { @class = "form-control", style = "width:300px;" })
-                                    @Html.HiddenFor(model => model.OwnerLastName, new { @id = "currentOwnerLastName" })
-                                    (Begin typing a few letters of the contact's last name.)
-                                </div>
-                            </div>
+                <div class="panel-heading"><b>Search by Company/DBA Name or Business Services Provided</b></div>
+                <div class="panel-body">
+                    <div class="col-sm-11">
+                        <div class="form-inline">
+                            <div class="row">
+                                <b>
+                                    @Html.LabelFor(model => model.Company, new { style = "width:142px;" })
+                                @Html.TextBoxFor(model => model.Company, null, new { @class = "form-control", style = "width:300px;" })
+                                @Html.HiddenFor(model => model.CompanyId)
+                            </b>(Enter a few letters of company/DBA name.)
                         </div>
                     </div>
-            </div>
-        </div>
-        <div class="panel panel-group hidden-print">
-            <div class="panel panel-primary">
-                <div class="panel-heading"><b>Search for Companies by Location or ARDOT District</b></div>
-                <div class="panel-body">                   
-                        <div class="row my-auto">
-                            <div class="col-lg-1"><b>@Html.LabelFor(model => model.Cities)</b></div>
-                            <div class="col-lg-11">@Html.DropDownListFor(model => model.Cities, new MultiSelectList(ViewBag.CityList), new { @Name = "Cities[]", Multiple = true, @class = "Form-Control" }) <input type="button" class="btn btn-primary hidden-print" value="Clear Cities" onclick="clearCities()" style="width:130px"/>  (Choose cities if you wish to limit your search to specific cities.)</div>
-                        </div>
-                        <div class="row my-auto">
-                            <div class="col-lg-1"><b>@Html.LabelFor(model => model.States)</b></div>
-                            <div class="col-lg-11">@Html.DropDownListFor(model => model.States, new MultiSelectList(ViewBag.StateList), new { @Name = "States[]", Multiple = true, Class = "Form-Control" }) <input type="button" class="btn btn-primary hidden-print" value="Clear States" onclick="clearStates()" style="width:130px"/> (Choose states if you wish to limit your search to specific states. )</div> 
-                        </div>
-                        <div class="row my-auto">
-                            <div class="col-lg-1"><b>@Html.LabelFor(model => model.OwnerZipCodes)</b></div>
-                            <div class="col-lg-11">@Html.DropDownListFor(model => model.OwnerZipCodes, new MultiSelectList(ViewBag.ZipCodeList), new { @Name = "OwnerZipCodes[]", Multiple = true, @class = "Form-Control" }) <input type="button" class="btn btn-primary hidden-print" value="Clear Zips" onclick="clearOwnerZipCodes()" style="width:130px"/> (Choose zipcodes if you wish to limit your search to specific zip codes. )</div> 
-                        </div>
-                        <div class="row my-auto">
-                            <div class="col-lg-1"><b>@Html.LabelFor(model => model.County)</b></div>
-                            <div class="col-lg-11">@Html.DropDownListFor(model => model.County, new MultiSelectList(ViewBag.counties), new { @Name = "Counties[]", Multiple = true, @class = "Form-Control", @id = "Counties" }) <input type="button" class="btn btn-primary hidden-print" value="Clear Countis" onclick="clearCounties()" style="width:130px"/> (Choose counties if you wish to limit your search to specific counties.)</div> 
-                        </div>
-                        <div class="row my-auto">
-                            <div class="col-lg-1"><b>@Html.LabelFor(model => model.Districts)</b></div>
-                            <div class="col-lg-11">@Html.DropDownListFor(model => model.Districts, new MultiSelectList(ViewBag.Districts), new { @Name = "Districts[]", Multiple = true, @class = "Form-Control", @id = "Districts" }) <input type="button" class="btn btn-primary hidden-print" value="Clear Districts" onclick="clearDistricts()" style="width:130px" /> (Choose districts if you wish to limit your search to specifics districts. )</div> 
-                        </div>
-                        <div class="row my-auto">
-                            <div class="col-lg-1"><b>@Html.LabelFor(model => model.AreaCode)</b></div>                           
-                            <div class="col-lg-1">@Html.TextBoxFor(model => model.AreaCode, null, new { @class = "form-control" })</div>                     
-                        </div>                    
+                    <div class="form-inline">
+                        <div class="row">
+                            <b>
+                                @Html.LabelFor(model => model.BusinessDescription)
+                            @Html.TextBoxFor(model => model.BusinessDescription, null, new { @class = "form-control", style = "width:300px;" })
+                            @Html.HiddenFor(model => model.BusinessDescription, new { @id = "currentBusinessDescription" })
+                        </b>(Enter a few letters of company's services.)
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="panel panel-group hidden-print">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><b>Search by Departmental and NAICS Work Classification Codes</b></div>
+        <div class="panel-body">
+            <div class="col-sm-6">
+                @Html.LabelFor(model => model.NAICS)
+                @Html.DropDownListFor(model => model.NAICS, new MultiSelectList(ViewBag.NAICSList), new { multiple = "multiple", searchable = "Search here...", @class = "mdb-select sm-form colorful-select dropdown-primary", @id = "NAICSddl" })
+                <input type="button" class="btn btn-primary hidden-print" value="Clear Naics" onclick="clearNAICS()" />
+            </div>
+            <div class="col-sm-6">
+                @Html.LabelFor(model => model.ItemCode)
+                @Html.DropDownListFor(model => model.ItemCode, new MultiSelectList(ViewBag.ItemCodesList), new { multiple = "multiple", searchable = "Search here...", @class = "mdb-select sm-form colorful-select dropdown-primary", @id = "Itemddl" })
+                <input type="button" class="btn btn-primary hidden-print" value="Clear Item Codes" onclick="clearItemCodes()" />
+            </div>
         </div>
-        <div style="text-align: center">
-            <input type="button" class="btn btn-primary hidden-print" value="RESET PAGE" onclick="clearform()" />
-            <input id="Search" type="button" class="btn btn-primary hidden-print" value="SEARCH" />
-            <input type="submit" name="ExportToExcel" value="All Companies to Excel" class="btn btn-primary hidden-print" />
+    </div>
+</div>
+<div class="panel panel-group hidden-print">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><b>Search by Contact Person</b></div>
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <div class="form-inline">
+                    <div class="row">
+                        @Html.LabelFor(model => model.OwnerFirstName)
+                        @Html.TextBoxFor(model => model.OwnerFirstName, null, new { @class = "form-control", style = "width:300px;" })
+                        @Html.HiddenFor(model => model.OwnerFirstName, new { @id = "currentOwnerFirstName" })
+                        (Begin typing a few letters of the contact's first name.)
+                    </div>
+                </div>
+                <div class="form-inline">
+                    <div class="row">
+                        @Html.LabelFor(model => model.OwnerLastName)
+                        @Html.TextBoxFor(model => model.OwnerLastName, null, new { @class = "form-control", style = "width:300px;" })
+                        @Html.HiddenFor(model => model.OwnerLastName, new { @id = "currentOwnerLastName" })
+                        (Begin typing a few letters of the contact's last name.)
+                    </div>
+                </div>
+            </div>
         </div>
-        <br />
-        <p><div id="SearchResultsContainer"></div></p>
+    </div>
+</div>
+<div class="panel panel-group hidden-print">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><b>Search for Companies by Location or ARDOT District</b></div>
+        <div class="panel-body">
+            <div class="row my-auto">
+                <div class="col-lg-1"><b>@Html.LabelFor(model => model.Cities)</b></div>
+                <div class="col-lg-11">
+                    @Html.DropDownListFor(model => model.Cities, new MultiSelectList(ViewBag.CityList), new { @Name = "Cities[]", Multiple = true, @class = "Form-Control" })
+                <input type="button" class="btn btn-primary hidden-print" value="Clear Cities" onclick="clearCities()" style="width:130px" />(Limit your search to specific cities.)
+            </div>
+        </div>
+        <div class="row my-auto">
+            <div class="col-lg-1"><b>@Html.LabelFor(model => model.States)</b></div>
+            <div class="col-lg-11">
+                @Html.DropDownListFor(model => model.States, new MultiSelectList(ViewBag.StateList), new { @Name = "States[]", Multiple = true, Class = "Form-Control" })
+            <input type="button" class="btn btn-primary hidden-print" value="Clear States" onclick="clearStates()" style="width:130px" /> (Limit your search to specific states. )
+        </div>
+    </div>
+    <div class="row my-auto">
+        <div class="col-lg-1"><b>@Html.LabelFor(model => model.OwnerZipCodes)</b></div>
+        <div class="col-lg-11">
+            @Html.DropDownListFor(model => model.OwnerZipCodes, new MultiSelectList(ViewBag.ZipCodeList), new { @Name = "OwnerZipCodes[]", Multiple = true, @class = "Form-Control" })
+        <input type="button" class="btn btn-primary hidden-print" value="Clear Zips" onclick="clearOwnerZipCodes()" style="width:130px" /> (Limit your search to specific zip codes. )
+    </div>
+</div>
+<div class="row my-auto">
+    <div class="col-lg-1"><b>@Html.LabelFor(model => model.County)</b></div>
+    <div class="col-lg-11">
+        @Html.DropDownListFor(model => model.County, new MultiSelectList(ViewBag.counties), new { @Name = "Counties[]", Multiple = true, @class = "Form-Control", @id = "Counties" })
+    <input type="button" class="btn btn-primary hidden-print" value="Clear Counties" onclick="clearCounties()" style="width:130px" /> (Limit your search to specific counties.)
+</div>
+</div>
+<div class="row my-auto">
+    <div class="col-lg-1"><b>@Html.LabelFor(model => model.Districts)</b></div>
+    <div class="col-lg-11">@Html.DropDownListFor(model => model.Districts, new MultiSelectList(ViewBag.Districts), new { @Name = "Districts[]", Multiple = true, @class = "Form-Control", @id = "Districts" }) <input type="button" class="btn btn-primary hidden-print" value="Clear Districts" onclick="clearDistricts()" style="width:130px" /> (Limit your search to specifics districts. )</div>
+</div>
+<div class="row my-auto">
+    <div class="col-lg-1"><b>@Html.LabelFor(model => model.AreaCode)</b></div>
+    <div class="col-lg-11">@Html.TextBoxFor(model => model.AreaCode, null, new { @class = "form-control", style = "width: 100px;" })</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div style="text-align: center">
+    <button class="btn btn-primary hidden-print">Full DBE Directory to Excel</button>
+
+    @*<input type="submit" name="ExportToExcel" value="Full DBE Directory to Excel" class="btn btn-primary hidden-print" />*@
+
+    <input type="button" class="btn btn-primary hidden-print" value="RESET PAGE" onclick="clearform()" />
+
+    <input id="Search" type="button" class="btn btn-primary hidden-print" value="SEARCH" />
+
+</div>
+<br />
+<p><div id="SearchResultsContainer"></div></p>
 }
